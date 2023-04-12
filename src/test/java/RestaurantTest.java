@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -61,4 +63,21 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //<<<<<<<<<<<<<<<<<<<<<<Payment>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    @Test
+    public void calculate_total_ordered_for_cuisine(){
+        //adding extra items in the menu....
+        restaurant.addToMenu("French Toast", 199);
+        restaurant.addToMenu("Diet Coke", 110);
+
+        //add items for ordering ... lets say into the cart ...
+        List<String> selectedItems = new ArrayList<>();
+        selectedItems.add("Vegetable lasagne");
+        selectedItems.add("Diet Coke");
+
+        int expected =379; //269+110
+        assertEquals(379,restaurant.getTotalPlacedOrder(selectedItems));
+    }
+    //<<<<<<<<<<<<<<<<<<<<<<Payment>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
