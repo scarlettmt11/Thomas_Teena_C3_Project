@@ -73,4 +73,30 @@ public class Restaurant {
         return name;
     }
 
+
+    //calculation of ordered food items....
+    int totalAmt = 0;
+    public int getTotalPlacedOrder(List<String> selectedItems) {
+
+        //it'll only execute when selectedItems has data.....
+        if(selectedItems != null && !selectedItems.isEmpty()){
+
+            for (String placedItemName : selectedItems) {
+
+                //menu loop starts here ....
+                for (Item item : menu) {
+                    if (item.getName().equals(placedItemName)) {
+                        totalAmt = totalAmt + item.getPrice();  // also use  => += item.getPrice();
+                        break;
+                    }
+                }
+                //...........................
+
+            }
+        }
+
+        return totalAmt;
+    }
+
+
 }
